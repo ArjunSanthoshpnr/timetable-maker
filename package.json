@@ -15,7 +15,6 @@
     "@emotion/styled": "11.11.5",
     "@react-pdf/renderer": "3.4.4",
     "antd": "5.18.3",
-    "i": "0.3.7",
     "install": "0.13.0",
     "luxon": "3.4.4",
     "next": "14.2.4",
@@ -23,7 +22,8 @@
     "pocketbase": "0.21.3",
     "react": "^18",
     "react-dom": "^18",
-    "react-to-print": "2.15.1"
+    "react-to-print": "2.15.1",
+    "swr": "2.2.5"
   },
   "devDependencies": {
     "eslint": "^8",

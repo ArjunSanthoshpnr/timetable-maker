@@ -19,7 +19,6 @@ function TeachersList({
       setTeachers(teachers);
     });
   }, []);
-
   return (
     <EntityList
       isLoading={isLoading}
@@ -27,13 +26,15 @@ function TeachersList({
       data={teachers}
       reloadData={reloadData}
       rowKey="id"
-      totalCount={data?.totalElements}
+      totalCount={teachers?.length}
       pageNo={pageNo}
       setPageNo={setPageNo}
       pageSize={pageSize}
       setPageSize={setPageSize}
       showTableResizeOption
       setSort={setSort}
+      isPaginationVisible={true}
+      isRowSelectionVisible={true}
     />
   );
 }

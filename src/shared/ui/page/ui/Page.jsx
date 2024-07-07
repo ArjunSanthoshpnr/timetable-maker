@@ -4,7 +4,6 @@ const { Title } = Typography;
 import styled from "@emotion/styled";
 
 export default function Page({
-  title = "",
   content = <div />,
   showPageHeader = false,
   header = {},
@@ -16,7 +15,7 @@ export default function Page({
   return (
     <_Page>
       <Head>
-        <title>{`TTM${title ? ` - ${title}` : ""}`}</title>
+        <title>{`TTM${header?.title ? ` - ${header?.title}` : ""}`}</title>
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/favicon.ico" />
       </Head>

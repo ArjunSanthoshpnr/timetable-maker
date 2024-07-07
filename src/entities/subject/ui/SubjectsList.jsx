@@ -1,4 +1,4 @@
-import { useState, useEffect, useRef, forwardRef } from "react";
+import { useState, useEffect, useRef } from "react";
 
 import { EntityList } from "@/shared/ui";
 import { columns } from "../config/columns";
@@ -31,9 +31,9 @@ function SubjectsList({
   const DownloadPdf = <Button onClick={handlePrint}>Download</Button>;
 
   return (
-    <div>
+    <div ref={componentRef}>
       <EntityList
-        componentRef={componentRef}
+        // componentRef={componentRef}
         isLoading={isLoading}
         columns={columns}
         data={subjects}
@@ -47,6 +47,7 @@ function SubjectsList({
         showTableResizeOption
         setSort={setSort}
         toolbarExtensions={[DownloadPdf]}
+        showToolbar={true}
       />
     </div>
   );

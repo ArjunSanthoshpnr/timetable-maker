@@ -1,25 +1,25 @@
-import { SubjectsList } from "@/widgets/subjects-list";
+import { PeriodsList } from "@/widgets/periods-list";
 import { Page } from "@/shared/ui/page";
 
-function Subjects() {
+function Periods() {
   return (
     <Page
       showPageHeader
       header={{
-        title: "Subjects",
+        title: "Periods",
         breadcrumbs: [
           {
             title: "Home",
           },
 
           {
-            title: "Subjects",
+            title: "Periods",
           },
         ],
       }}
-      content={<SubjectsList />}
+      content={<PeriodsList />}
     ></Page>
   );
 }
 
-export default Subjects;
+export default Periods;

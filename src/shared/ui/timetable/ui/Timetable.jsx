@@ -6,9 +6,9 @@ import mapToAntDColumns from "../lib/map-to-antd-columns";
 
 import useRowSelection from "../lib/use-row-selection";
 
-export default function EntityList({
-  componentRef = null,
-  columns = {},
+export default function Timetable({
+  componentRef,
+  columns = [],
   data = [],
   rowKey = "id",
   totalCount = 0,
@@ -19,15 +19,13 @@ export default function EntityList({
   setSort = () => {},
   toolbarExtensions = [],
   showToolbar = false,
-  isPaginationVisible = false,
   isRowSelectionVisible = false,
+  isPaginationVisible = false,
 }) {
   const { selectedRowKeys, selectedRows, onSelectChange } = useRowSelection(
     data,
     rowKey
   );
-
-  const [tableSize, setTableSize] = useState("middle");
 
   const [columnConfig, setColumnConfig] = useState(columns);
   const visibleColumns = columnConfig.filter((column) => !column.hidden);
@@ -63,7 +61,7 @@ export default function EntityList({
           columns={mapToAntDColumns(visibleColumns)}
           dataSource={data}
           rowKey={rowKey}
-          size={tableSize}
+          size={"large"}
           rowSelection={
             isRowSelectionVisible && {
               type: "checkbox",

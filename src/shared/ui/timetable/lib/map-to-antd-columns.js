@@ -1,5 +1,5 @@
 import styled from "@emotion/styled";
-import { Flex, Typography } from "antd";
+import { Typography } from "antd";
 
 import getFormattedValue from "./get-formatted-value";
 
@@ -9,13 +9,7 @@ export default function mapToAntDColumns(columns) {
   return columns.map((column) => ({
     ...column,
     render: (item, record) => {
-      if (column?.type === "break") {
-        return (
-          <Flex justify="center">
-            <VerticalText>Break</VerticalText>
-          </Flex>
-        );
-      } else if (!item) {
+      if (!item) {
         return "---";
       }
 
@@ -44,9 +38,4 @@ export const _Text = styled(Text)`
   .ant-typography-copy {
     margin-left: auto;
   }
-`;
-
-const VerticalText = styled.div`
-  text-transform: uppercase;
-  letter-spacing: 3px;
 `;

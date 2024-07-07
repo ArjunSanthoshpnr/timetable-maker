@@ -9,23 +9,21 @@ const { Header, Content, Footer } = Layout;
 const items = [
   { key: "teachers", label: <Link href="/teachers">Teachers</Link> },
   { key: "subjects", label: <Link href="/subjects">Subjects</Link> },
-  { key: "class", label: <Link href="/classes">Classes</Link> },
-  { key: "periods", label: "Periods" },
+  { key: "classes", label: <Link href="/classes">Classes</Link> },
+  { key: "periods", label: <Link href="/periods">Periods</Link> },
   { key: "csta", label: "CSTA" },
   { key: "cta", label: "CTA" },
-  { key: "class-timetable", label: "Class timetable" },
+  {
+    key: "class-timetable",
+    label: <Link href="/class-timetable">Class timetable</Link>,
+  },
   { key: "teachers-timetable", label: "Teachers timetable" },
   { key: "students-timetable", label: "Students timetable" },
   { key: "report", label: "Report" },
 ];
 
 const AppLayout = ({ children }) => {
-  const {
-    token: { colorBgContainer, borderRadiusLG },
-  } = theme.useToken();
-
   const router = useRouter();
-  const pathNames = console.log("router: ", router);
   return (
     <Layout style={{ height: "100vh" }}>
       <Header
@@ -34,6 +32,7 @@ const AppLayout = ({ children }) => {
           alignItems: "center",
           justifyContent: "space-between",
           gap: "2rem",
+          padding: "2rem",
         }}
       >
         <Title level={4} style={{ margin: 0 }}>
@@ -42,7 +41,7 @@ const AppLayout = ({ children }) => {
         <Menu
           theme="dark"
           mode="horizontal"
-          defaultSelectedKeys={["2"]}
+          selectedKeys={[router?.pathname?.split("/")[1]]}
           items={items}
           style={{
             flex: 1,
@@ -50,13 +49,13 @@ const AppLayout = ({ children }) => {
           }}
         />
       </Header>
-      {children}
+      <Content>{children}</Content>
       <Footer
         style={{
           textAlign: "center",
         }}
       >
-        Timetable Maker ©{new Date().getFullYear()} Created by Fiftytwodays
+        Timetable maker ©{new Date().getFullYear()} Created by Fiftytwodays
       </Footer>
     </Layout>
   );
