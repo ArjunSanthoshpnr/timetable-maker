@@ -20,6 +20,4 @@ You can start editing the page by modifying `pages/index.js`. The page auto-upda
 
 Pocketbase folder: /data/pb
 
-### Pending tasks
 
-1. Implement teachers timetable
