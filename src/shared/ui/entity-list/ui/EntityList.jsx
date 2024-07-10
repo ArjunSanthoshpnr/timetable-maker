@@ -22,7 +22,6 @@ export default function EntityList({
   isLoading = false,
   title = "",
 }) {
-  // const [columnConfig, setColumnConfig] = useState(columns);
   const visibleColumns = columns.filter((column) => !column.hidden);
 
   const setSortValue = (sorter) => {
@@ -60,8 +59,6 @@ export default function EntityList({
           rowSelection={
             isRowSelectionVisible && {
               type: "checkbox",
-              // selectedRowKeys,
-              // onChange: onSelectChange,
             }
           }
           onChange={(pagination, _, sorter) => {
@@ -96,25 +93,3 @@ const TableToolbar = styled.div`
   justify-content: space-between;
   padding: 16px 0;
 `;
-
-// const TableToolbarLeft = styled.div`
-//   display: flex;
-//   align-items: center;
-//   justify-content: flex-start;
-//   font-size: 16px;
-//   font-weight: 500;
-// `;
-
-// const TableToolbarRightItem = styled.div`
-//   font-size: 16px;
-//   margin: auto;
-//   :hover {
-//     cursor: pointer;
-//     color: ${() => {
-//       const {
-//         token: { colorPrimaryHover },
-//       } = theme.useToken();
-//       return colorPrimaryHover;
-//     }};
-//   }
-// `;

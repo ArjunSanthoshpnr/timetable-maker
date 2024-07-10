@@ -8,7 +8,6 @@ import { getAllClassTimetable } from "../api/get-class-timetable";
 import { generateTimetable } from "../lib/generate-timetable";
 
 function ClassTimetableList({
-  // isLoading,
   reloadData,
   pageNo,
   setPageNo,

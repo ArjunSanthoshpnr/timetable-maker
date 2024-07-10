@@ -22,7 +22,6 @@ function ClassSubjectTeacherAssociationList({
   return (
     <div>
       <EntityList
-        // componentRef={componentRef}
         isLoading={isLoading}
         columns={columns}
         data={tableData}

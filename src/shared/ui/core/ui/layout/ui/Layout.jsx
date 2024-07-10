@@ -16,12 +16,12 @@ const items = [
     key: "class-timetable",
     label: <Link href="/class-timetable">Class timetable</Link>,
   },
-  { key: "teachers-timetable", label: "Teachers timetable" },
   {
     key: "students-timetable",
     label: <Link href="/students-timetable">Students timetable</Link>,
   },
-  { key: "report", label: "Report" },
+  { key: "teachers-timetable", label: "Teachers timetable", disabled: true },
+  { key: "report", label: "Report", disabled: true },
 ];
 
 const AppLayout = ({ children }) => {

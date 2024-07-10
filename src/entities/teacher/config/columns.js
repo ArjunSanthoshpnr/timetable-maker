@@ -17,14 +17,12 @@ export const columns = [
   {
     title: "Created",
     dataIndex: "created",
-    // width: 300,
     hidden: false,
     sorter: true,
   },
   {
     title: "Updated",
     dataIndex: "updated",
-    // width: 300,
     hidden: false,
     sorter: true,
   },
