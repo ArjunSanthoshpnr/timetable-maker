@@ -1,10 +1,7 @@
-import { useState } from "react";
 import { Table, Space } from "antd";
 import styled from "@emotion/styled";
 
 import mapToAntDColumns from "../lib/map-to-antd-columns";
-
-import useRowSelection from "../lib/use-row-selection";
 
 export default function EntityList({
   componentRef = null,
@@ -21,16 +18,12 @@ export default function EntityList({
   showToolbar = false,
   isPaginationVisible = false,
   isRowSelectionVisible = false,
+  isBordered = false,
+  isLoading = false,
+  title = "",
 }) {
-  const { selectedRowKeys, selectedRows, onSelectChange } = useRowSelection(
-    data,
-    rowKey
-  );
-
-  const [tableSize, setTableSize] = useState("middle");
-
-  const [columnConfig, setColumnConfig] = useState(columns);
-  const visibleColumns = columnConfig.filter((column) => !column.hidden);
+  // const [columnConfig, setColumnConfig] = useState(columns);
+  const visibleColumns = columns.filter((column) => !column.hidden);
 
   const setSortValue = (sorter) => {
     const sortOrder = sorter.order === "ascend" ? "asc" : "desc";
@@ -47,28 +40,28 @@ export default function EntityList({
     <>
       {showToolbar && (
         <TableToolbar>
-          <TableToolbarLeft></TableToolbarLeft>
           <Space size="middle">
             <>
-              {toolbarExtensions.map((extension, idx) => (
-                <Extension key={idx}>{extension}</Extension>
-              ))}
+              {toolbarExtensions.map((extension, idx) => {
+                return <Extension key={idx}>{extension}</Extension>;
+              })}
             </>
           </Space>
         </TableToolbar>
       )}
       <div ref={componentRef}>
         <Table
-          // loading={isLoading}
+          title={title}
+          loading={isLoading}
+          bordered={isBordered}
           columns={mapToAntDColumns(visibleColumns)}
           dataSource={data}
           rowKey={rowKey}
-          size={tableSize}
           rowSelection={
             isRowSelectionVisible && {
               type: "checkbox",
-              selectedRowKeys,
-              onChange: onSelectChange,
+              // selectedRowKeys,
+              // onChange: onSelectChange,
             }
           }
           onChange={(pagination, _, sorter) => {
@@ -104,24 +97,24 @@ const TableToolbar = styled.div`
   padding: 16px 0;
 `;
 
-const TableToolbarLeft = styled.div`
-  display: flex;
-  align-items: center;
-  justify-content: flex-start;
-  font-size: 16px;
-  font-weight: 500;
-`;
+// const TableToolbarLeft = styled.div`
+//   display: flex;
+//   align-items: center;
+//   justify-content: flex-start;
+//   font-size: 16px;
+//   font-weight: 500;
+// `;
 
-const TableToolbarRightItem = styled.div`
-  font-size: 16px;
-  margin: auto;
-  :hover {
-    cursor: pointer;
-    color: ${() => {
-      const {
-        token: { colorPrimaryHover },
-      } = theme.useToken();
-      return colorPrimaryHover;
-    }};
-  }
-`;
+// const TableToolbarRightItem = styled.div`
+//   font-size: 16px;
+//   margin: auto;
+//   :hover {
+//     cursor: pointer;
+//     color: ${() => {
+//       const {
+//         token: { colorPrimaryHover },
+//       } = theme.useToken();
+//       return colorPrimaryHover;
+//     }};
+//   }
+// `;

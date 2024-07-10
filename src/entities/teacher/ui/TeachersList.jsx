@@ -4,7 +4,6 @@ import { getAllTeachers } from "../api/get-teachers";
 import { useState, useEffect } from "react";
 
 function TeachersList({
-  data,
   isLoading,
   reloadData,
   pageNo,

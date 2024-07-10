@@ -1,8 +1,10 @@
 import useSWR from "swr";
+import { Typography } from "antd";
+
+import { EntityList } from "@/shared/ui";
 
 import { columns } from "../config/columns";
 import { getAllClassTimetable } from "../api/get-class-timetable";
-import { EntityList } from "@/shared/ui";
 import { generateTimetable } from "../lib/generate-timetable";
 
 function ClassTimetableList({
@@ -13,32 +15,33 @@ function ClassTimetableList({
   pageSize,
   setPageSize,
   setSort,
+  selectedClass = "",
 }) {
+  const { Text } = Typography;
+
   const { data, isLoading } = useSWR(
-    "/api/class-timetable",
-    getAllClassTimetable
+    ["/api/class-timetable", selectedClass],
+    () => getAllClassTimetable(selectedClass)
   );
 
-  console.log("data: ", data);
-
   return (
-    <div>
-      <EntityList
-        // componentRef={componentRef}
-        isLoading={isLoading}
-        columns={columns}
-        data={generateTimetable(data)}
-        reloadData={reloadData}
-        rowKey="key"
-        totalCount={data?.length || 0}
-        pageNo={pageNo}
-        setPageNo={setPageNo}
-        pageSize={pageSize}
-        setPageSize={setPageSize}
-        showTableResizeOption
-        setSort={setSort}
-      />
-    </div>
+    <EntityList
+      isLoading={isLoading}
+      columns={columns}
+      data={generateTimetable(data)}
+      reloadData={reloadData}
+      rowKey="key"
+      totalCount={data?.length || 0}
+      pageNo={pageNo}
+      setPageNo={setPageNo}
+      pageSize={pageSize}
+      setPageSize={setPageSize}
+      showTableResizeOption
+      setSort={setSort}
+      isBordered={true}
+      showToolbar
+      title={() => <Text strong>{selectedClass}</Text>}
+    />
   );
 }
 

@@ -1,6 +1,5 @@
-import { Page } from "@/shared/ui/page";
 import styled from "@emotion/styled";
-import { Breadcrumb, Layout, Menu, Flex, theme } from "antd";
+import { Layout, Menu } from "antd";
 import Link from "next/link";
 import { useRouter } from "next/router";
 
@@ -11,8 +10,8 @@ const items = [
   { key: "subjects", label: <Link href="/subjects">Subjects</Link> },
   { key: "classes", label: <Link href="/classes">Classes</Link> },
   { key: "periods", label: <Link href="/periods">Periods</Link> },
-  { key: "csta", label: "CSTA" },
-  { key: "cta", label: "CTA" },
+  { key: "csta", label: <Link href="/csta">CSTA</Link> },
+  { key: "cta", label: <Link href="/cta">CTA</Link> },
   {
     key: "class-timetable",
     label: <Link href="/class-timetable">Class timetable</Link>,
@@ -25,7 +24,7 @@ const items = [
 const AppLayout = ({ children }) => {
   const router = useRouter();
   return (
-    <Layout style={{ height: "100vh" }}>
+    <Layout className="" style={{ minHeight: "100vh" }}>
       <Header
         style={{
           display: "flex",

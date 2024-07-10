@@ -1,12 +1,12 @@
 import { useState } from "react";
 
-import { ClassesList as _ClassesList } from "@/entities/class";
+import { ClassTimetableAssociationList as _ClassTimetableAssociationList } from "@/entities/cta";
 
-function ClassesList() {
+function ClassTimetableAssociationList() {
   const [pageNo, setPageNo] = useState(0);
   const [pageSize, setPageSize] = useState(10);
   return (
-    <_ClassesList
+    <_ClassTimetableAssociationList
       pageNo={pageNo}
       setPageNo={setPageNo}
       pageSize={pageSize}
@@ -16,4 +16,4 @@ function ClassesList() {
   );
 }
 
-export default ClassesList;
+export default ClassTimetableAssociationList;

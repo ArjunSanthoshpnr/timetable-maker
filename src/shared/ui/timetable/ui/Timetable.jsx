@@ -1,10 +1,7 @@
-import { useState } from "react";
 import { Table, Space } from "antd";
 import styled from "@emotion/styled";
 
 import mapToAntDColumns from "../lib/map-to-antd-columns";
-
-import useRowSelection from "../lib/use-row-selection";
 
 export default function Timetable({
   componentRef,
@@ -22,13 +19,7 @@ export default function Timetable({
   isRowSelectionVisible = false,
   isPaginationVisible = false,
 }) {
-  const { selectedRowKeys, selectedRows, onSelectChange } = useRowSelection(
-    data,
-    rowKey
-  );
-
-  const [columnConfig, setColumnConfig] = useState(columns);
-  const visibleColumns = columnConfig.filter((column) => !column.hidden);
+  const visibleColumns = columns.filter((column) => !column.hidden);
 
   const setSortValue = (sorter) => {
     const sortOrder = sorter.order === "ascend" ? "asc" : "desc";
@@ -65,8 +56,6 @@ export default function Timetable({
           rowSelection={
             isRowSelectionVisible && {
               type: "checkbox",
-              selectedRowKeys,
-              onChange: onSelectChange,
             }
           }
           onChange={(pagination, _, sorter) => {
@@ -110,16 +99,16 @@ const TableToolbarLeft = styled.div`
   font-weight: 500;
 `;
 
-const TableToolbarRightItem = styled.div`
-  font-size: 16px;
-  margin: auto;
-  :hover {
-    cursor: pointer;
-    color: ${() => {
-      const {
-        token: { colorPrimaryHover },
-      } = theme.useToken();
-      return colorPrimaryHover;
-    }};
-  }
-`;
+// const TableToolbarRightItem = styled.div`
+//   font-size: 16px;
+//   margin: auto;
+//   :hover {
+//     cursor: pointer;
+//     color: ${() => {
+//       const {
+//         token: { colorPrimaryHover },
+//       } = theme.useToken();
+//       return colorPrimaryHover;
+//     }};
+//   }
+// `;
