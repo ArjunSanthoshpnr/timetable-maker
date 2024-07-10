@@ -1,10 +1,10 @@
+import useSWR from "swr";
+
 import { EntityList } from "@/shared/ui";
 import { columns } from "../config/columns";
 import { getAllTeachers } from "../api/get-teachers";
-import { useState, useEffect } from "react";
 
 function TeachersList({
-  isLoading,
   reloadData,
   pageNo,
   setPageNo,
@@ -12,20 +12,16 @@ function TeachersList({
   setPageSize,
   setSort,
 }) {
-  const [teachers, setTeachers] = useState([]);
-  useEffect(() => {
-    getAllTeachers().then((teachers) => {
-      setTeachers(teachers);
-    });
-  }, []);
+  const { data, isLoading } = useSWR(["/api/teachers"], getAllTeachers);
+
   return (
     <EntityList
       isLoading={isLoading}
       columns={columns}
-      data={teachers}
+      data={data}
       reloadData={reloadData}
       rowKey="id"
-      totalCount={teachers?.length}
+      totalCount={data?.length}
       pageNo={pageNo}
       setPageNo={setPageNo}
       pageSize={pageSize}

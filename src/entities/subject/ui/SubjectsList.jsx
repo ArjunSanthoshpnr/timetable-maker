@@ -1,13 +1,10 @@
-import { useState, useEffect, useRef } from "react";
+import useSWR from "swr";
 
 import { EntityList } from "@/shared/ui";
 import { columns } from "../config/columns";
 import { getAllSubjects } from "../api/get-subjects";
-import { useReactToPrint } from "react-to-print";
-import { Button } from "antd";
 
 function SubjectsList({
-  isLoading,
   reloadData,
   pageNo,
   setPageNo,
@@ -15,39 +12,23 @@ function SubjectsList({
   setPageSize,
   setSort,
 }) {
-  const [subjects, setSubjects] = useState([]);
-  useEffect(() => {
-    getAllSubjects().then((subjects) => {
-      setSubjects(subjects);
-    });
-  }, []);
-
-  const componentRef = useRef();
-
-  const handlePrint = useReactToPrint({
-    content: () => componentRef.current,
-  });
-
-  const DownloadPdf = <Button onClick={handlePrint}>Download</Button>;
+  const { data, isLoading } = useSWR(["/api/subjects"], getAllSubjects);
 
   return (
-    <div ref={componentRef}>
+    <div>
       <EntityList
-        // componentRef={componentRef}
         isLoading={isLoading}
         columns={columns}
-        data={subjects}
+        data={data}
         reloadData={reloadData}
         rowKey="id"
-        totalCount={subjects?.length}
+        totalCount={data?.length}
         pageNo={pageNo}
         setPageNo={setPageNo}
         pageSize={pageSize}
         setPageSize={setPageSize}
         showTableResizeOption
         setSort={setSort}
-        toolbarExtensions={[DownloadPdf]}
-        showToolbar={true}
       />
     </div>
   );

@@ -1,11 +1,10 @@
-import { useState, useEffect } from "react";
+import useSWR from "swr";
 
 import { EntityList } from "@/shared/ui";
 import { columns } from "../config/columns";
 import { getAllPeriods } from "../api/get-periods";
 
 function PeriodsList({
-  isLoading,
   reloadData,
   pageNo,
   setPageNo,
@@ -13,22 +12,17 @@ function PeriodsList({
   setPageSize,
   setSort,
 }) {
-  const [periods, setPeriods] = useState([]);
-  useEffect(() => {
-    getAllPeriods().then((periods) => {
-      setPeriods(periods);
-    });
-  }, []);
+  const { data, isLoading } = useSWR(["/api/classes"], getAllPeriods);
 
   return (
     <div>
       <EntityList
         isLoading={isLoading}
         columns={columns}
-        data={periods}
+        data={data}
         reloadData={reloadData}
         rowKey="id"
-        totalCount={periods?.length}
+        totalCount={data?.length}
         pageNo={pageNo}
         setPageNo={setPageNo}
         pageSize={pageSize}

@@ -1,11 +1,10 @@
-import { useState, useEffect } from "react";
+import useSWR from "swr";
 
 import { EntityList } from "@/shared/ui";
 import { columns } from "../config/columns";
 import { getAllClasses } from "../api/get-classes";
 
 function ClassesList({
-  isLoading,
   reloadData,
   pageNo,
   setPageNo,
@@ -13,23 +12,17 @@ function ClassesList({
   setPageSize,
   setSort,
 }) {
-  const [classes, setClasses] = useState([]);
-  useEffect(() => {
-    getAllClasses().then((classes) => {
-      setClasses(classes);
-    });
-  }, []);
+  const { data, isLoading } = useSWR(["/api/classes"], getAllClasses);
 
   return (
     <div>
       <EntityList
-        // componentRef={componentRef}
         isLoading={isLoading}
         columns={columns}
-        data={classes}
+        data={data}
         reloadData={reloadData}
         rowKey="id"
-        totalCount={classes?.length}
+        totalCount={data?.length}
         pageNo={pageNo}
         setPageNo={setPageNo}
         pageSize={pageSize}
