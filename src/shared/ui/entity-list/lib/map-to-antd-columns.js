@@ -9,14 +9,6 @@ export default function mapToAntDColumns(columns) {
   return columns.map((column) => ({
     ...column,
     render: (item, record) => {
-      if (column?.dataType === "array") {
-        return (
-          <Flex gap="middle" vertical>
-            <Text>{item && item[0]}</Text>
-            <Text>{item && item[1]}</Text>
-          </Flex>
-        );
-      }
       if (column?.type === "break") {
         return (
           <Flex justify="center">
@@ -25,6 +17,15 @@ export default function mapToAntDColumns(columns) {
         );
       } else if (!item) {
         return "---";
+      }
+
+      if (column?.dataType === "array") {
+        return (
+          <Flex gap="middle" vertical>
+            <Text>{item && item[0]}</Text>
+            <Text>{item && item[1]}</Text>
+          </Flex>
+        );
       }
       if (column?.copyable) {
         return (

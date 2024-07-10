@@ -17,14 +17,11 @@ export const generateTimetable = (apiResponse) => {
     const classInfo =
       item?.expand?.class_sub_teach_ass?.expand?.subject_name[0]?.name;
 
-    const teacherName =
-      item?.expand?.class_sub_teach_ass?.expand?.teacher_name[0]?.name;
-
     if (!data[dayName]) {
       data[dayName] = { day: dayName };
     }
 
-    data[dayName][periodName] = [classInfo, teacherName];
+    data[dayName][periodName] = [classInfo];
   });
 
   const tableData = Object.values(data);

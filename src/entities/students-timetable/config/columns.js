@@ -13,7 +13,6 @@ export const columns = [
     dataIndex: "P1",
     hidden: false,
     align: "center",
-    dataType: "array",
     type: "period",
   },
   {
@@ -22,7 +21,6 @@ export const columns = [
     key: "P2",
     hidden: false,
     align: "center",
-    dataType: "array",
     type: "period",
   },
   {
@@ -43,7 +41,6 @@ export const columns = [
     key: "P3",
     hidden: false,
     align: "center",
-    dataType: "array",
     type: "period",
   },
   {
@@ -52,7 +49,6 @@ export const columns = [
     key: "P4",
     hidden: false,
     align: "center",
-    dataType: "array",
     type: "period",
   },
   {
@@ -61,7 +57,6 @@ export const columns = [
     key: "P5",
     hidden: false,
     align: "center",
-    dataType: "array",
     type: "period",
   },
 ];
