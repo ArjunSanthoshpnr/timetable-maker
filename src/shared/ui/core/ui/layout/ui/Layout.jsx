@@ -20,7 +20,10 @@ const items = [
     key: "students-timetable",
     label: <Link href="/students-timetable">Students timetable</Link>,
   },
-  { key: "teachers-timetable", label: "Teachers timetable", disabled: true },
+  {
+    key: "teachers-timetable",
+    label: <Link href="/teachers-timetable">Teachers timetable</Link>,
+  },
   { key: "report", label: "Report", disabled: true },
 ];
 
