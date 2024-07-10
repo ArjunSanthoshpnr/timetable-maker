@@ -1,8 +1,3 @@
-/**
- * This link component persists the existing query parameters
- *  when navigating to a specific pathname.
- */
-
 import _Link from "next/link";
 import { useRouter } from "next/router";
 
