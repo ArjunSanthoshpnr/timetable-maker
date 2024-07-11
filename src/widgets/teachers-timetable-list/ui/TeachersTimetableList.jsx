@@ -1,9 +1,11 @@
 import { useState, useRef } from "react";
 import { useReactToPrint } from "react-to-print";
 import { Button, Space } from "antd";
+import useSWR from "swr";
 
 import { TeachersTimetableList as _TeachersTimetableList } from "@/entities/teachers-timetable";
 import { useTeachers, SelectTeacher } from "@/features/change-teacher";
+import { getAllPeriods } from "@/entities/periods/api/get-periods";
 
 function TeachersTimetableList() {
   const [pageNo, setPageNo] = useState(0);
@@ -18,6 +20,11 @@ function TeachersTimetableList() {
   const { selectedTeacher, onSelectedTeacherChange, teachersList } =
     useTeachers("all");
 
+  const { data: periods, isLoading: isPeriodsLoading } = useSWR(
+    ["/api/periods"],
+    getAllPeriods
+  );
+
   let AllTimetables = [];
 
   if (selectedTeacher === "all") {
@@ -31,6 +38,7 @@ function TeachersTimetableList() {
           <_TeachersTimetableList
             isLoading={false}
             selectedTeacher={item?.value}
+            periods={periods}
           />
           {index < teachersList.length - 1 && <div className="page-break" />}
         </div>
@@ -59,8 +67,9 @@ function TeachersTimetableList() {
               setPageNo={setPageNo}
               pageSize={pageSize}
               setPageSize={setPageSize}
-              isLoading={false}
+              isLoading={isPeriodsLoading}
               selectedTeacher={selectedTeacher}
+              periods={periods}
             />
           )}
         </div>

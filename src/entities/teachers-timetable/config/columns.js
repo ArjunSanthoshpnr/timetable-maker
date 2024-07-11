@@ -6,6 +6,7 @@ export const columns = [
     rowScope: "row",
     width: 150,
     hidden: false,
+    isLogoVisible: true,
   },
   {
     key: "P1",

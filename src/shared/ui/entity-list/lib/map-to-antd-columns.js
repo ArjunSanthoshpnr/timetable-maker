@@ -2,12 +2,24 @@ import styled from "@emotion/styled";
 import { Flex, Typography } from "antd";
 
 import getFormattedValue from "./get-formatted-value";
+import Image from "next/image";
+
+const getColumnTitle = (column) => {
+  if (column?.isLogoVisible) {
+    return (
+      <Flex justify="center">
+        <Image src="/logo.png" alt="Logo" width={70} height={70} />
+      </Flex>
+    );
+  } else return column?.title;
+};
 
 const { Text } = Typography;
 
-export default function mapToAntDColumns(columns) {
+export default function mapToAntDColumns(columns, data) {
   return columns.map((column) => ({
     ...column,
+    title: getColumnTitle(column, data),
     render: (item, record) => {
       if (column?.type === "break") {
         return (

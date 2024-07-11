@@ -1,9 +1,11 @@
 import { useState, useRef } from "react";
 import { useReactToPrint } from "react-to-print";
 import { Button, Space } from "antd";
+import useSWR from "swr";
 
 import { ClassTimetableList as _ClassTimetableList } from "@/entities/class-timetable";
 import { useClasses, SelectClass } from "@/features/change-class";
+import { getAllPeriods } from "@/entities/periods/api/get-periods";
 
 function ClassTimetableList() {
   const [pageNo, setPageNo] = useState(0);
@@ -17,6 +19,11 @@ function ClassTimetableList() {
 
   const { selectedClass, onSelectedClassChange, classList } = useClasses("all");
 
+  const { data: periods, isLoading: isPeriodsLoading } = useSWR(
+    ["/api/periods"],
+    getAllPeriods
+  );
+
   let AllTimetables = [];
 
   if (selectedClass === "all") {
@@ -27,7 +34,11 @@ function ClassTimetableList() {
 
       return (
         <div key={item?.value}>
-          <_ClassTimetableList isLoading={false} selectedClass={item?.value} />
+          <_ClassTimetableList
+            isLoading={false}
+            selectedClass={item?.value}
+            periods={periods}
+          />
           {index < classList.length - 1 && <div className="page-break" />}
         </div>
       );
@@ -55,8 +66,9 @@ function ClassTimetableList() {
               setPageNo={setPageNo}
               pageSize={pageSize}
               setPageSize={setPageSize}
-              isLoading={false}
+              isLoading={isPeriodsLoading}
               selectedClass={selectedClass}
+              periods={periods}
             />
           )}
         </div>

@@ -5,7 +5,7 @@ import mapToAntDColumns from "../lib/map-to-antd-columns";
 
 export default function EntityList({
   componentRef = null,
-  columns = {},
+  columns = [],
   data = [],
   rowKey = "id",
   totalCount = 0,
@@ -20,7 +20,7 @@ export default function EntityList({
   isRowSelectionVisible = false,
   isBordered = false,
   isLoading = false,
-  title = "",
+  title,
 }) {
   const visibleColumns = columns.filter((column) => !column.hidden);
 
@@ -50,7 +50,9 @@ export default function EntityList({
       )}
       <div ref={componentRef}>
         <Table
-          title={title}
+          title={() => {
+            return title;
+          }}
           loading={isLoading}
           bordered={isBordered}
           columns={mapToAntDColumns(visibleColumns)}
@@ -80,7 +82,7 @@ export default function EntityList({
           scroll={{
             x: 1,
           }}
-        />
+        ></Table>
       </div>
     </>
   );

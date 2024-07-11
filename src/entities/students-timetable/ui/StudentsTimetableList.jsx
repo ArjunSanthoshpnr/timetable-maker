@@ -6,6 +6,7 @@ import { EntityList } from "@/shared/ui";
 import { columns } from "../config/columns";
 import { getAllStudentsTimetable } from "../api/get-students-timetable";
 import { generateTimetable } from "../lib/generate-timetable";
+import { generateColumnTitle } from "@/shared/lib/generate-column-title";
 
 function StudentsTimetableList({
   reloadData,
@@ -15,6 +16,7 @@ function StudentsTimetableList({
   setPageSize,
   setSort,
   selectedClass = "",
+  periods = [],
 }) {
   const { Text } = Typography;
 
@@ -26,7 +28,7 @@ function StudentsTimetableList({
   return (
     <EntityList
       isLoading={isLoading}
-      columns={columns}
+      columns={generateColumnTitle(columns, periods)}
       data={generateTimetable(data)}
       reloadData={reloadData}
       rowKey="key"
@@ -39,7 +41,11 @@ function StudentsTimetableList({
       setSort={setSort}
       isBordered={true}
       showToolbar
-      title={() => <Text strong>{selectedClass}</Text>}
+      title={
+        <Text style={{ fontSize: "24px" }} strong>
+          {selectedClass}
+        </Text>
+      }
     />
   );
 }
