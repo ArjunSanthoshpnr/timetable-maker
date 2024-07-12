@@ -3,6 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
+    "tauri": "tauri",
     "dev": "next dev & npm run start_pb",
     "build": "next build",
     "start": "next start",
@@ -26,6 +27,7 @@
     "swr": "2.2.5"
   },
   "devDependencies": {
+    "@tauri-apps/cli": "^1.6.0",
     "eslint": "^8",
     "eslint-config-next": "14.2.4"
   }
