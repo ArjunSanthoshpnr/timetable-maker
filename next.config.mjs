@@ -1,5 +1,6 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
+  output: "export",
   reactStrictMode: true,
   transpilePackages: [
     "antd",
@@ -12,6 +13,9 @@ const nextConfig = {
     "rc-tree",
     "rc-table",
   ],
+  images: {
+    unoptimized: true,
+  },
 };
 
 export default nextConfig;
