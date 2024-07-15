@@ -1,5 +1,6 @@
 body {
   color: rgb(var(--foreground-rgb));
+  margin: 0;
 }
 
 a {
@@ -23,6 +24,9 @@ a {
   body {
     height: initial !important;
     overflow: initial !important;
+    height: 100vh; /* Use 100% here to support printing more than a single page*/
+    margin: 0 !important;
+    padding: 0 !important;
     print-color-adjust: exact;
     -webkit-print-color-adjust: exact;
   }
@@ -36,6 +40,6 @@ a {
 }
 
 @page {
-  size: auto;
-  margin: 20mm;
+  size: landscape;
+  margin: 10px;
 }
