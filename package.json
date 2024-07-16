@@ -3,12 +3,12 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "tauri": "tauri",
-    "dev": "next dev & npm run start_pb",
+    "dev": "next dev",
     "build": "next build",
+    "tauri": "tauri",
     "start": "next start",
     "lint": "next lint",
-    "start_pb": "cd data/pb && ./pocketbase serve"
+    "start_pb": "cd data/pb && pocketbase serve"
   },
   "dependencies": {
     "@ant-design/cssinjs": "1.21.0",
