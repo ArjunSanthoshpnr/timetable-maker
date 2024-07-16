@@ -31,7 +31,7 @@ export const columns = [
   },
   {
     title: "Subject Name",
-    dataIndex: "subject_name",
+    dataIndex: ["expand", "subject_name", "name"],
     width: 300,
     hidden: false,
     sorter: true,
