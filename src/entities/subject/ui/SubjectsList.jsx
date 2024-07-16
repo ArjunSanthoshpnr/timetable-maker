@@ -10,7 +10,6 @@ function SubjectsList({
   setPageNo,
   pageSize,
   setPageSize,
-  setSort,
 }) {
   const { data, isLoading } = useSWR(["/api/subjects"], getAllSubjects);
 
@@ -28,7 +27,7 @@ function SubjectsList({
         pageSize={pageSize}
         setPageSize={setPageSize}
         showTableResizeOption
-        setSort={setSort}
+        isPaginationVisible={true}
       />
     </div>
   );

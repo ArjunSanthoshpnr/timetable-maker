@@ -1,7 +1,6 @@
 import styled from "@emotion/styled";
 import { Flex, Typography } from "antd";
 
-import getFormattedValue from "./get-formatted-value";
 import Image from "next/image";
 
 const getColumnTitle = (column) => {
@@ -20,7 +19,7 @@ export default function mapToAntDColumns(columns, data) {
   return columns.map((column) => ({
     ...column,
     title: getColumnTitle(column, data),
-    render: (item, record) => {
+    render: (item) => {
       if (column?.type === "break") {
         return (
           <Flex justify="center">
@@ -46,12 +45,7 @@ export default function mapToAntDColumns(columns, data) {
           </_Text>
         );
       } else {
-        return getFormattedValue(
-          item,
-          record,
-          column.dataFormat,
-          column.currencyIndex
-        );
+        return item;
       }
     },
     ellipsis: true,

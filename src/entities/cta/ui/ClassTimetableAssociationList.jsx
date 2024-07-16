@@ -1,38 +1,33 @@
-import { useState, useEffect } from "react";
+import useSWR from "swr";
 
 import { EntityList } from "@/shared/ui";
 import { columns } from "../config/columns";
 import { getAllClassTimetableAssociation } from "../api/get-all-cta";
 
 function ClassTimetableAssociationList({
-  isLoading,
-  reloadData,
   pageNo,
   setPageNo,
   pageSize,
   setPageSize,
 }) {
-  const [tableData, setTableData] = useState([]);
-  useEffect(() => {
-    getAllClassTimetableAssociation().then((data) => {
-      setTableData(data);
-    });
-  }, []);
+  const { data: tableData, isLoading: isTableLoading } = useSWR(
+    ["/api/cta-list"],
+    getAllClassTimetableAssociation
+  );
 
   return (
     <div>
       <EntityList
-        isLoading={isLoading}
+        isLoading={isTableLoading}
         columns={columns}
         data={tableData}
-        reloadData={reloadData}
         rowKey="id"
         totalCount={tableData?.length}
         pageNo={pageNo}
         setPageNo={setPageNo}
         pageSize={pageSize}
         setPageSize={setPageSize}
-        showTableResizeOption
+        isPaginationVisible={true}
       />
     </div>
   );

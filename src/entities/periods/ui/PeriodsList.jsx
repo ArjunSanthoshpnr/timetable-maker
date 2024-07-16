@@ -4,15 +4,8 @@ import { EntityList } from "@/shared/ui";
 import { columns } from "../config/columns";
 import { getAllPeriods } from "../api/get-periods";
 
-function PeriodsList({
-  reloadData,
-  pageNo,
-  setPageNo,
-  pageSize,
-  setPageSize,
-  setSort,
-}) {
-  const { data, isLoading } = useSWR(["/api/classes"], getAllPeriods);
+function PeriodsList({ reloadData, pageNo, setPageNo, pageSize, setPageSize }) {
+  const { data, isLoading } = useSWR(["/api/periods"], getAllPeriods);
 
   return (
     <div>
@@ -28,7 +21,7 @@ function PeriodsList({
         pageSize={pageSize}
         setPageSize={setPageSize}
         showTableResizeOption
-        setSort={setSort}
+        isPaginationVisible={true}
       />
     </div>
   );

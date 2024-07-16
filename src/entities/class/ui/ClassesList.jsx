@@ -4,16 +4,8 @@ import { EntityList } from "@/shared/ui";
 import { columns } from "../config/columns";
 import { getAllClasses } from "../api/get-classes";
 
-function ClassesList({
-  reloadData,
-  pageNo,
-  setPageNo,
-  pageSize,
-  setPageSize,
-  setSort,
-}) {
+function ClassesList({ reloadData, pageNo, setPageNo, pageSize, setPageSize }) {
   const { data, isLoading } = useSWR(["/api/classes"], getAllClasses);
-
   return (
     <div>
       <EntityList
@@ -28,7 +20,7 @@ function ClassesList({
         pageSize={pageSize}
         setPageSize={setPageSize}
         showTableResizeOption
-        setSort={setSort}
+        isPaginationVisible={true}
       />
     </div>
   );

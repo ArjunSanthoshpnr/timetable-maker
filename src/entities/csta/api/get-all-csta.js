@@ -5,6 +5,7 @@ export const getAllClassSubjectTeacherAssociation = async () => {
     .collection("ClassSubjectTeacherAssociation")
     .getFullList(200 /* batch size */, {
       sort: "created",
+      expand: "class_name, teacher_name, subject_name",
     });
 
   return result;

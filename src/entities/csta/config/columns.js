@@ -16,14 +16,15 @@ export const columns = [
   },
   {
     title: "Class Name",
-    dataIndex: "class_name",
+    dataIndex: ["expand", "class_name", "name"],
     width: 300,
     hidden: false,
     sorter: true,
   },
   {
     title: "Teacher Name",
-    dataIndex: "teacher_name",
+    dataIndex: ["expand", "teacher_name", "name"],
+
     width: 300,
     hidden: false,
     sorter: true,

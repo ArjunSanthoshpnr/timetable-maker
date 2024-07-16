@@ -10,7 +10,6 @@ function TeachersList({
   setPageNo,
   pageSize,
   setPageSize,
-  setSort,
 }) {
   const { data, isLoading } = useSWR(["/api/teachers"], getAllTeachers);
 
@@ -27,9 +26,7 @@ function TeachersList({
       pageSize={pageSize}
       setPageSize={setPageSize}
       showTableResizeOption
-      setSort={setSort}
       isPaginationVisible={true}
-      isRowSelectionVisible={true}
     />
   );
 }

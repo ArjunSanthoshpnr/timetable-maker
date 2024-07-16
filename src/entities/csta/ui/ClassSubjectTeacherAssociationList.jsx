@@ -1,38 +1,33 @@
-import { useState, useEffect } from "react";
+import useSWR from "swr";
 
 import { EntityList } from "@/shared/ui";
 import { columns } from "../config/columns";
 import { getAllClassSubjectTeacherAssociation } from "../api/get-all-csta";
 
 function ClassSubjectTeacherAssociationList({
-  isLoading,
-  reloadData,
   pageNo,
   setPageNo,
   pageSize,
   setPageSize,
 }) {
-  const [tableData, setTableData] = useState([]);
-  useEffect(() => {
-    getAllClassSubjectTeacherAssociation().then((data) => {
-      setTableData(data);
-    });
-  }, []);
+  const { data: tableData, isLoading: isTableLoading } = useSWR(
+    ["/api/csta-list"],
+    getAllClassSubjectTeacherAssociation
+  );
 
   return (
     <div>
       <EntityList
-        isLoading={isLoading}
+        isLoading={isTableLoading}
         columns={columns}
         data={tableData}
-        reloadData={reloadData}
         rowKey="id"
         totalCount={tableData?.length}
         pageNo={pageNo}
         setPageNo={setPageNo}
         pageSize={pageSize}
         setPageSize={setPageSize}
-        showTableResizeOption
+        isPaginationVisible={true}
       />
     </div>
   );

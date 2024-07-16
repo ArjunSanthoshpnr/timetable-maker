@@ -6,7 +6,7 @@ import { EntityList } from "@/shared/ui";
 import { columns } from "../config/columns";
 import { getAllClassTimetable } from "../api/get-class-timetable";
 import { generateTimetable } from "../lib/generate-timetable";
-import { generateColumnTitle } from "@/shared/lib/generate-column-title";
+import { generateTimetableColumns } from "@/shared/lib/generate-timetable-columns";
 
 function ClassTimetableList({
   reloadData,
@@ -28,7 +28,7 @@ function ClassTimetableList({
   return (
     <EntityList
       isLoading={isLoading}
-      columns={generateColumnTitle(columns, periods)}
+      columns={generateTimetableColumns(columns, periods)}
       data={generateTimetable(data)}
       reloadData={reloadData}
       rowKey="key"
