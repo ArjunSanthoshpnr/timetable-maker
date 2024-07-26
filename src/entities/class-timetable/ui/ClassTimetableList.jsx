@@ -7,6 +7,8 @@ import { columns } from "../config/columns";
 import { getAllClassTimetable } from "../api/get-class-timetable";
 import { generateTimetable } from "../lib/generate-timetable";
 import { generateTimetableColumns } from "@/shared/lib/generate-timetable-columns";
+import { EditableCell } from "./EditableCell";
+// import { EditableRow } from "./EditableRow";
 
 function ClassTimetableList({
   reloadData,
@@ -17,6 +19,7 @@ function ClassTimetableList({
   setSort,
   selectedClass = "",
   periods = [],
+  isEditable,
 }) {
   const { Text } = Typography;
 
@@ -25,10 +28,22 @@ function ClassTimetableList({
     () => getAllClassTimetable(selectedClass)
   );
 
+  const components = {
+    body: {
+      // row: EditableRow,
+      cell: EditableCell,
+    },
+  };
+
   return (
     <EntityList
       isLoading={isLoading}
-      columns={generateTimetableColumns(columns, periods)}
+      columns={generateTimetableColumns(
+        columns,
+        periods,
+        selectedClass,
+        isEditable
+      )}
       data={generateTimetable(data)}
       reloadData={reloadData}
       rowKey="key"
@@ -46,6 +61,8 @@ function ClassTimetableList({
           {selectedClass}
         </Text>
       }
+      isEditable={isEditable}
+      components={isEditable && components}
     />
   );
 }

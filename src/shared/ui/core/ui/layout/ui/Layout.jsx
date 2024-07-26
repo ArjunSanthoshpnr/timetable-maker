@@ -24,6 +24,10 @@ const items = [
     key: "teachers-timetable",
     label: <Link href="/teachers-timetable">Teachers timetable</Link>,
   },
+  {
+    key: "editable-timetable",
+    label: <Link href="/editable-timetable">Generate timetable</Link>,
+  },
   { key: "report", label: "Report", disabled: true },
 ];
 
